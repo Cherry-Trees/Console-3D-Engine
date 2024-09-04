@@ -244,7 +244,7 @@ namespace cgel
                         return z1 > z2;
                     });
 
-                    // Clip the triangles.
+                    // Clip the triangles against the edges of the screen.
                     for (auto &&tri : rasterTriangles) 
                     {
                         Triangle clippedTriangle[2];

@@ -61,9 +61,16 @@ namespace cgel
                 if (Keyboard::isKeyPressed(Keyboard::LShift)) 
                     m_cameraLookFrom.Y() -= m_downMovementSpeed;
 
+                // Temp target.
                 m_cameraTarget = {0, 0, 1, 1};
+
+                // Rotate the camera target to the updated angle.
                 m_cameraLookDirection = m_cameraTarget.multiply(m_cameraFullRotationMatrix);
+
+                // Move the camera target along the look direction.
                 m_cameraTarget = m_cameraLookFrom.addH(m_cameraLookDirection);
+
+                // Scale the look direction based on speed.
                 m_forward = m_cameraLookDirection.multiplyH(m_forwardMovementSpeed);
 
                 if (Keyboard::isKeyPressed(Keyboard::W)) 

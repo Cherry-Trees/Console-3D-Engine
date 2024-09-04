@@ -112,8 +112,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(Cols == R)> * = nullptr>
             Matrix<Type, Rows, C> operator* (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, Rows, C> mul;
@@ -194,8 +192,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(Cols == R)> * = nullptr>
             Matrix<Type, Rows, C> multiply(const Matrix<Type, R, C> &t) const {
                 Matrix<Type, Rows, C> mul;
@@ -311,8 +307,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(2 == R)> * = nullptr>
             Matrix<Type, 1, C> operator* (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;
@@ -386,8 +380,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(2 == R)> * = nullptr>
             Matrix<Type, 1, C> multiply (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;
@@ -512,8 +504,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(3 == R)> * = nullptr>
             Matrix<Type, 1, C> operator* (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;
@@ -587,8 +577,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(3 == R)> * = nullptr>
             Matrix<Type, 1, C> multiply (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;
@@ -780,8 +768,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(4 == R)> * = nullptr>
             Matrix<Type, 1, C> operator* (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;
@@ -855,8 +841,6 @@ namespace cgel {
             }
 
             // * Matrix multiplication method *
-            // This is the Vec transformation method that converts the Tensor objects back
-            //      to Matrix objects, so i lose access to the methods, like dotH and crossH below.
             template<size_t R, size_t C, std::enable_if_t<(4 == R)> * = nullptr>
             Matrix<Type, 1, C> multiply (const Matrix<Type, R, C> &t) const {
                 Matrix<Type, 1, C> mul;

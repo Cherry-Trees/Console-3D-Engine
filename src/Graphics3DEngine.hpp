@@ -46,6 +46,7 @@ namespace cgel
             float m_yawRotationSpeed;
             float m_pitchRotationSpeed;
 
+            // Keyboard stuff
             void m_handleKeyboardEvents()
             {
                 if (Keyboard::isKeyPressed(Keyboard::A)) 
@@ -114,8 +115,10 @@ namespace cgel
                 m_meshCollection.push_back(mesh);
             }
 
+            // Per frame
             void update()
-            {       
+            {  
+                // Clear screen buffer.
                 clear();
 
                 // Update camera rotation.
@@ -160,12 +163,15 @@ namespace cgel
                         Vec4f edge1 = vertex2.position.subtractH(vertex1.position);
                         Vec4f faceNormal = edge1.crossH(edge0);
                         faceNormal.normalizeH();
-                        
+
+                        // Draw the triangle if it can project onto the camera.
                         if (faceNormal.dotH(vertex0.position.subtractH(m_cameraLookFrom)) < 0) 
                         {
 
+                            // Light projection.
                             const float lightDP = faceNormal.dotH(m_directionalLight);
 
+                            // Index of the gradient array.
                             unsigned short triangleAsciiGradientIndex = std::max(std::min((int)roundf(lightDP * m_asciiGradientSize), m_asciiGradientSize - 2), 0);
                             char triangleAsciiChar = m_asciiGradient[triangleAsciiGradientIndex];
 
@@ -186,12 +192,13 @@ namespace cgel
                       
                             for (uint8_t i = 0; i < clippedTriangleCount; i++) 
                             {
-
+        
                                 Vertex clippedVertex0 = clippedTriangle[i].vertex0;
                                 Vertex clippedVertex1 = clippedTriangle[i].vertex1;
                                 Vertex clippedVertex2 = clippedTriangle[i].vertex2;
                                 const char clippedAsciiChar = clippedTriangle[i].asciiChar;
 
+                                // Flip vertices.
                                 clippedVertex0.position.X() *= -1;
                                 clippedVertex0.position.Y() *= -1;
                                 clippedVertex1.position.X() *= -1;
@@ -220,7 +227,7 @@ namespace cgel
                                 clippedVertex2.position.Y()++;
                                 clippedVertex2.position.X() *= 0.5 * this->m_screen_width;
                                 clippedVertex2.position.Y() *= 0.5 * this->m_screen_height;
-
+        
                                 rasterTriangles.push_back(Triangle{clippedVertex0, clippedVertex1, clippedVertex2, faceNormal, clippedAsciiChar});
                             }
 
@@ -229,7 +236,7 @@ namespace cgel
                     }
 
 
-
+                    // Sort triangles from back to front.
                     std::sort(rasterTriangles.begin(), rasterTriangles.end(), [](Triangle &t1, Triangle &t2)
                     {
                         float z1 = (t1.vertex0.position.Z() + t1.vertex1.position.Z() + t1.vertex2.position.Z()) / 3.0f;
@@ -237,7 +244,7 @@ namespace cgel
                         return z1 > z2;
                     });
 
-
+                    // Clip the triangles.
                     for (auto &&tri : rasterTriangles) 
                     {
                         Triangle clippedTriangle[2];
@@ -270,6 +277,7 @@ namespace cgel
                             newTriangles = triangleList.size();
                         }
 
+                        // Draw each triangle.
                         for (auto &&tri : triangleList) 
                         {
                             const Vec2f p0{tri.vertex0.position.X(), tri.vertex0.position.Y()};

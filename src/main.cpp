@@ -2,9 +2,12 @@
 
 int main() {
 
+    // Change screen resolution here.
     cgel::Graphics3DEngine rw(941, 400);
-
-    cgel::Mesh mesh = cgel::constructMeshFromObjectFile("ObjectFiles/sword.obj");
+    //                                                        Change object file here.
+    //                                                                   |
+    //                                                                   v
+    cgel::Mesh mesh = cgel::constructMeshFromObjectFile("ObjectFiles/sword.obj"); 
     rw.addMesh(mesh);
 
     while (1)
